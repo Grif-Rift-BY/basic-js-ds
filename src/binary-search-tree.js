@@ -18,11 +18,8 @@ class BinarySearchTree {
   }
 
   add( data ) {
-
     this.treeRoot = createNode( this.treeRoot, data );
-
     function createNode( currentNode, data ) {
-
       if ( !currentNode ) return new Node( data );
       if ( currentNode.data === data) return currentNode;
       if ( data < currentNode.data ) {
@@ -31,9 +28,7 @@ class BinarySearchTree {
         currentNode.right = createNode(currentNode.right, data)
       }
       return currentNode;
-
     }
-
   }
 
   has( data ) {
@@ -54,9 +49,42 @@ class BinarySearchTree {
     return null;
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(data) {
+
+    this.treeRoot = removeNode( this.treeRoot, data ); 
+    
+    function removeNode( currentNode, data ) {
+      if ( !currentNode ) return null; 
+      if ( data < currentNode.data ) {
+        currentNode.left = removeNode( currentNode.left, data );
+        return currentNode;
+      } else if ( data > currentNode.data ) {
+        currentNode.right = removeNode( currentNode.right, data );
+        return currentNode;
+      } else {
+
+        if ( !currentNode.left && !currentNode.right ) {
+          return null;
+        }
+
+        if ( !currentNode.left ) {
+          currentNode = currentNode.right;
+          return currentNode;
+        }
+
+        if ( !currentNode.right ) {
+          currentNode = currentNode.left;
+          return currentNode;
+        }
+
+        let minFromRight = currentNode.right;
+        while ( minFromRight.left ) { minFromRight = minFromRight.left; }
+        currentNode.data = minFromRight.data;
+        currentNode.right = removeNode( currentNode.right, minFromRight.data );
+        return currentNode;
+      }
+    }
+
   }
 
   min() {
