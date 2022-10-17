@@ -19,22 +19,23 @@ class BinarySearchTree {
 
   add( data ) {
 
-    this.treeRoot = createNode( this.treeRoot, data);
+    this.treeRoot = createNode( this.treeRoot, data );
 
     function createNode( currentNode, data ) {
 
       if ( !currentNode ) return new Node( data );
       if ( currentNode.data === data) return currentNode;
-      if (data < currentNode.data) {
-        currentNode.left = insertNode( currentNode.left, data )
+      if ( data < currentNode.data ) {
+        currentNode.left = createNode( currentNode.left, data )
       } else {
-        currentNode.right = insertNode(currentNode.right, data)
+        currentNode.right = createNode(currentNode.right, data)
       }
       return currentNode;
 
     }
 
   }
+
 
   has(/* data */) {
     throw new NotImplementedError('Not implemented');
@@ -52,14 +53,30 @@ class BinarySearchTree {
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+   
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    
   }
+
+
+  min() {
+    let currentNode = this.treeRoot;
+    if ( !this.treeRoot ) return null;
+    while ( currentNode.left ) currentNode = currentNode.left;
+    return currentNode.data;
+  }
+
+  max() {
+    let currentNode = this.treeRoot;
+    if ( !currentNode ) return null;
+    while ( currentNode.right ) currentNode = currentNode.right;
+    return currentNode.data;
+  }
+
+
+
 }
 
 module.exports = {
