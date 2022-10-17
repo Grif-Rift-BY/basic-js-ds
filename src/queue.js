@@ -15,9 +15,11 @@ const { ListNode } = require('../extensions/list-node.js');
  */
 
 class Queue {
+
 	constructor() {
-		this.queue = [];
+		this.queue = [ ];
 	}
+
 	getUnderlyingList() {
     const head = this.queue[ 0 ];
 		return head;
@@ -39,6 +41,7 @@ class Queue {
 		const firstElement = this.queue.shift().value;
     return firstElement;
 	}
+  
 }
 
 module.exports = {
