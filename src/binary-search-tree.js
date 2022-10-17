@@ -36,9 +36,8 @@ class BinarySearchTree {
 
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has( data ) {
+    return Boolean( this.find( data ) );
   }
 
   find( data ) {
@@ -73,8 +72,6 @@ class BinarySearchTree {
     while ( currentNode.right ) currentNode = currentNode.right;
     return currentNode.data;
   }
-
-
 
 }
 
